@@ -19,13 +19,6 @@ pipeline {
                 sh 'mvn test'
             }
         }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the project (simulated)...'
-                sh 'echo Deploy completed!'
-            }
-        }
     }
 
     post {
