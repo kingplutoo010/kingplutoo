@@ -1,2 +1,3 @@
 print ("Wassup Buddy!! v7711-baba")
 date
+mvn -version
