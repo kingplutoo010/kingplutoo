@@ -2,34 +2,33 @@ pipeline {
     agent any
 
     tools {
-        maven "M399" // Make sure Maven is configured in Jenkins as "M399"
+        maven 'M398' // Make sure 'M398' is configured under Jenkins tools
     }
 
     stages {
-        stage('Build') {
+        stage('Echo Version') {
             steps {
-                echo 'Building the project...'
-                sh 'mvn clean compile'
+                sh 'echo Print Maven Version'
+                sh 'mvn -version'
             }
         }
 
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Running tests...'
+                sh 'mvn clean package -DskipTests=true'
+            }
+        }
+
+        stage('Unit Test') {
+            steps {
                 sh 'mvn test'
             }
         }
     }
 
     post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed.'
-        }
         always {
-            echo 'Pipeline finished (success or failure).'
+            echo 'Pipeline finished.'
         }
     }
 }
