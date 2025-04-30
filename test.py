@@ -1,4 +1,4 @@
-print ("Wassup Buddy!! v7711-baba")
+print("Wassup Buddy!! v7711-baba")
 
 pipeline {
     agent any
@@ -7,6 +7,7 @@ pipeline {
         MAVEN_VERSION = '3.9.6'
     }
 
+    stages {
         stage('Install Maven') {
             steps {
                 sh '''
@@ -38,5 +39,6 @@ pipeline {
         }
     }
 }
+
 
 
