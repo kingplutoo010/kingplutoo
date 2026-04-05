@@ -1,34 +1,61 @@
-pipeline {
-    agent any
-
-    tools {
-        maven 'M399' // Make sure 'M399' is configured under Jenkins tools
-    }
-
-    stages {
-        stage('Echo Version') {
-            steps {
-                sh 'echo Print Maven Version'
-                sh 'mvn -version'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'mvn clean package -DskipTests=true'
-            }
-        }
-
-        stage('Unit Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-    }
-
-    post {
-        always {
-            echo 'Pipeline finished.'
-        }
-    }
+pipeline
+{
+	agent any
+		tools
+		{
+			maven 'MAVEN_HOME'
+		}
+		stages
+		{
+			stage('Welcome Stage')
+			{
+				steps
+				{
+					echo 'Welcome to Pipeline'
+				}
+			}
+			
+			stage('Clean Stage')
+			{
+				steps
+				{
+					sh 'mvn clean'
+				}
+			}
+			stage('Test Stage')
+			{
+				steps
+				{
+					sh 'mvn test'
+				}
+			}
+			stage('Build Stage')
+			{
+				steps
+				{
+					sh 'mvn install'
+				}
+			}
+			stage('Build Success')
+			{
+				steps
+				{
+					echo 'Build Success'
+				}
+			}	
+			stage('Final Success')
+			{
+				steps
+				{
+					echo 'Final Success'
+				}
+			}
+			stage('Supar Final Success')
+			{
+				steps
+				{
+					echo 'Supar Final Success'
+				}
+			}
+		}
 }
